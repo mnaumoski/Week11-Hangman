@@ -1,5 +1,11 @@
 // require your letter objects
 
+// require prompt to use to make the game 
+var inquirer = require('inquirer');
+//require the objects/exports you will use
+var importWordsFromGameJS = require('./game.js');
+
+
 var Word = function(wrd){
 // property to store the string wrd
 
@@ -10,11 +16,10 @@ var Word = function(wrd){
 	this.getLets = function() {
 // populate the collection above with new Letter objects
 	};
-	
 	//found the current word
 	this.didWeFindTheWord = function() {
 		//sets this.found in the word object to true or false if all letter objects have a true value in their appear property
-		});
+		};
 
 		return this.found;
 	};
