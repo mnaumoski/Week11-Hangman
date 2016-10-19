@@ -7,119 +7,117 @@ var importWordsFromGameJS = require('./game.js');
 
 var lives = 8;
 
-function checkRound {
-	console.log("");
-	console.log("");
+function checkRound() {
+    console.log("");
+    console.log("");
 
-// if user has no more lives
+    // if user has no more lives
 
-	if (lives <= 0) {
-		console.log("#####################");
-		console.log("_________");
-		console.log("|       |");
-		console.log("|       O");
-		console.log("|      /|l");
-		console.log("|       A ");
-		console.log("|      J L  ");
-		console.log("|");
-		console.log("|");
-		console.log("Game Over -- Yer Doomed!");
-		console.log("#####################");
-		// exit game
-		process.exit();
-}
-	if(lives > 0) {
-		console.log("#####################");
-		console.log("Victory! You lived to tell the tale!");
-		// exit game
-		process.exit();
-	}
+    if (lives <= 0) {
+        console.log("#####################");
+        console.log("_________");
+        console.log("|       |");
+        console.log("|       O");
+        console.log("|      /|l");
+        console.log("|       A ");
+        console.log("|      J L  ");
+        console.log("|");
+        console.log("|");
+        console.log("Game Over -- Yer Doomed!");
+        console.log("#####################");
+        // exit game
+        process.exit();
+    }
+    if (lives > 0) {
+        console.log("#####################");
+        console.log("Victory! You lived to tell the tale!");
+        // exit game
+        process.exit();
+    }
 
-	playRound();
+    playRound();
 }
 
 function playRound() {
-// prompt.start();
-inquirer.prompt([
-		{
-				type:"confirm",
-				name:"ready",
-				message: "Welcome to Game of Thrones Hangman Game. Are you ready to play?",
-		},
-		{
-				type: "input",
-				name: "name",
-				message: "State your name, Your Highness: ",
+    // prompt.start();
+    inquirer.prompt([{
+        type: "confirm",
+        name: "ready",
+        message: "Welcome to Game of Thrones Hangman Game. Are you ready to play?",
+    }, {
+        type: "input",
+        name: "name",
+        message: "State your name, Your Highness: ",
 
-		},
-		{
-			type: "input",
-			name: "letter",
-			message: "Guess a letter!",
-		}
-		]).then(function(answer){
-			console.log("Welcome " + answer.name);
+    }, {
+        type: "input",
+        name: "letter",
+        message: "Guess a letter!",
+    }]).then(function(answer) {
+        console.log("Welcome " + answer.name);
 
-})
-game = {
-    wordArray: [],
-    wordUArray: [],
-    lives: 8,
-    wordBankLength: importWordsFromGameJS.game.list.length,
-    word: "test",
-    wordU: " ",
-    pullWord: function() {
-        word = importWordsFromGameJS.game.list[(Math.floor(Math.random() * this.wordBankLength))]
-    },
-    setUnderline: function() {
-        this.pullWord();
-        for (var i = 0; i < word.length; i++) {
-            this.wordArray[i] = word.charAt(i);
-            this.wordUArray[i] = " _ ";
-            // console.log(this.wordArray);
-            // console.log(this.wordUArray);
-            // console.log(importWordsFromGameJS.game.list[i]);
-        }
-        this.wordU = this.wordUArray.join("");
-        console.log("This word has " + this.wordUArray.length + " letters. Type letter to guess: " + this.wordU);
-    },
-    updateLetter: function(letter) {
-        this.changes = 0;
-        for (i = 0; i < word.length; i++) {
-            this.wordArray[i] = this.word.charAt(i);
-
-            if (this.word.charAt(i) == letter) {
-                this.changes += 1;
+    })
+    game = {
+        wordArray: [],
+        wordUArray: [],
+        lives: 8,
+        wordBankLength: importWordsFromGameJS.game.list.length,
+        word: "test",
+        wordU: " ",
+        pullWord: function() {
+            word = importWordsFromGameJS.game.list[(Math.floor(Math.random() * this.wordBankLength))]
+        },
+        setUnderline: function() {
+            this.pullWord();
+            for (var i = 0; i < word.length; i++) {
+                this.wordArray[i] = word.charAt(i);
+                this.wordUArray[i] = " _ ";
+                // console.log(this.wordArray);
+                // console.log(this.wordUArray);
+                // console.log(importWordsFromGameJS.game.list[i]);
             }
-        }
+            this.wordU = this.wordUArray.join("");
+            console.log("This word has " + this.wordUArray.length + " letters. Type letter to guess: " + this.wordU);
+        },
+        updateLetter: function(letter) {
+            this.changes = 0;
+            for (i = 0; i < word.length; i++) {
+                this.wordArray[i] = this.word.charAt(i);
 
-        if (this.changes < 1) {
-            this.lives -= 1;
-            console.log(this.lives);
-        }
-        this.wordU = this.wordUArray.join("");
-        console.log(this.wordU);
+                if (this.word.charAt(i) == letter) {
+                    this.changes += 1;
+                }
+            }
 
-        word1 = this.wordArray.join("");
-        word2 = this.wordUArray.join("");
+            if (this.changes < 1) {
+                this.lives -= 1;
+                console.log(this.lives);
+            }
+            this.wordU = this.wordUArray.join("");
+            console.log(this.wordU);
 
-        if (word1 == word2) {
-        	console.log("Victory!");
-        	// restart game here
-        }
-        if(lives < 1) {
-        	console.log("No more turns :( " + word1);
-        	// restart game here
+            word1 = this.wordArray.join("");
+            word2 = this.wordUArray.join("");
+
+            if (word1 == word2) {
+                console.log("Victory!");
+                // restart game here
+            }
+            if (lives < 1) {
+                console.log("No more turns :( " + word1);
+                // restart game here
+            }
+
         }
 
     }
 
-}
-}
 // pulls a random word from the word bank
 game.pullWord();
 game.setUnderline();
+}
 
+playRound();
 // game = {
 //     wordBank: // create or import a list of words
 //     wordsWon: // count of words Found
