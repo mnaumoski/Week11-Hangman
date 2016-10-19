@@ -5,14 +5,61 @@ var prompt = require('prompt');
 //require the objects/exports you will use
 var importWordsFromGameJS = require('./game.js');
 
-// console.log(importWordsFromGameJS.game.list);
-// console.log(importWordsFromGameJS.game.list.length);
+var lives = 8;
 
+function checkRound {
+	console.log("");
+	console.log("");
+
+// if user has no more lives
+
+	if (lives <= 0) {
+		console.log("#####################");
+		console.log("_________");
+		console.log("|       |");
+		console.log("|       O");
+		console.log("|      /|l");
+		console.log("|       A ");
+		console.log("|      J L  ");
+		console.log("|");
+		console.log("|");
+		console.log("Game Over -- Yer Doomed!");
+		console.log("#####################");
+		// exit game
+		process.exit();
+}
+	if(lives > 0) {
+		console.log("#####################");
+		console.log("Victory! You lived to tell the tale!");
+		// exit game
+		process.exit();
+	}
+
+	playRound();
+}
+
+function playRound() {
 // prompt.start();
-inquirer.prompt([{
+inquirer.prompt([
+		{
+				type:"confirm",
+				name:"ready",
+				message: "Welcome to Game of Thrones Hangman Game. Are you ready to play?",
+		},
+		{
+				type: "input",
+				name: "name",
+				message: "State your name, Your Highness: ",
 
-}]).then(function(answer){
-	
+		},
+		{
+			type: "input",
+			name: "letter",
+			message: "Guess a letter!",
+		}
+		]).then(function(answer){
+			console.log("Welcome " + answer.name);
+
 })
 game = {
     wordArray: [],
@@ -68,7 +115,7 @@ game = {
     }
 
 }
-
+}
 // pulls a random word from the word bank
 game.pullWord();
 game.setUnderline();
