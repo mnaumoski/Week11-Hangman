@@ -19,15 +19,20 @@ game = {
         wordU: " ",
         pullWord: function() {
             word = importWordsFromGameJS.game.list[(Math.floor(Math.random() * this.wordBankLength))]
-            console.log(word);
-            console.log(word.length);
         },
         setUnderline: function() {
             this.pullWord();
-            for (var i = 0; i < this.word.length; i++) {
-                console.log(importWordsFromGameJS.game.list[i]);
+            for (var i = 0; i < word.length; i++) {
+                this.wordArray[i] = word.charAt(i);
+                this.wordUArray[i] = " _ ";
+                // console.log(this.wordArray);
+                // console.log(this.wordUArray);
+                // console.log(importWordsFromGameJS.game.list[i]);
             }
-        },
+            this.wordU = this.wordUArray.join("");
+            console.log(this.wordArray);
+            console.log(this.wordU);
+        }
     }
     // pulls a random word from the word bank
 game.pullWord();
