@@ -8,33 +8,68 @@ var importWordsFromGameJS = require('./game.js');
 // console.log(importWordsFromGameJS.game.list);
 // console.log(importWordsFromGameJS.game.list.length);
 
-prompt.start();
+// prompt.start();
+inquirer.prompt([{
 
+}]).then(function(answer){
+	
+})
 game = {
-        wordArray: [],
-        wordUArray: [],
-        lives: 8,
-        wordBankLength: importWordsFromGameJS.game.list.length,
-        word: "test",
-        wordU: " ",
-        pullWord: function() {
-            word = importWordsFromGameJS.game.list[(Math.floor(Math.random() * this.wordBankLength))]
-        },
-        setUnderline: function() {
-            this.pullWord();
-            for (var i = 0; i < word.length; i++) {
-                this.wordArray[i] = word.charAt(i);
-                this.wordUArray[i] = " _ ";
-                // console.log(this.wordArray);
-                // console.log(this.wordUArray);
-                // console.log(importWordsFromGameJS.game.list[i]);
-            }
-            this.wordU = this.wordUArray.join("");
-            console.log(this.wordArray);
-            console.log(this.wordU);
+    wordArray: [],
+    wordUArray: [],
+    lives: 8,
+    wordBankLength: importWordsFromGameJS.game.list.length,
+    word: "test",
+    wordU: " ",
+    pullWord: function() {
+        word = importWordsFromGameJS.game.list[(Math.floor(Math.random() * this.wordBankLength))]
+    },
+    setUnderline: function() {
+        this.pullWord();
+        for (var i = 0; i < word.length; i++) {
+            this.wordArray[i] = word.charAt(i);
+            this.wordUArray[i] = " _ ";
+            // console.log(this.wordArray);
+            // console.log(this.wordUArray);
+            // console.log(importWordsFromGameJS.game.list[i]);
         }
+        this.wordU = this.wordUArray.join("");
+        console.log("This word has " + this.wordUArray.length + " letters. Type letter to guess: " + this.wordU);
+    },
+    updateLetter: function(letter) {
+        this.changes = 0;
+        for (i = 0; i < word.length; i++) {
+            this.wordArray[i] = this.word.charAt(i);
+
+            if (this.word.charAt(i) == letter) {
+                this.changes += 1;
+            }
+        }
+
+        if (this.changes < 1) {
+            this.lives -= 1;
+            console.log(this.lives);
+        }
+        this.wordU = this.wordUArray.join("");
+        console.log(this.wordU);
+
+        word1 = this.wordArray.join("");
+        word2 = this.wordUArray.join("");
+
+        if (word1 == word2) {
+        	console.log("Victory!");
+        	// restart game here
+        }
+        if(lives < 1) {
+        	console.log("No more turns :( " + word1);
+        	// restart game here
+        }
+
     }
-    // pulls a random word from the word bank
+
+}
+
+// pulls a random word from the word bank
 game.pullWord();
 game.setUnderline();
 
