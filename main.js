@@ -6,9 +6,8 @@ var prompt = require('prompt');
 //require the objects/exports you will use
 var importWordsFromGameJS = require('./game.js');
 
-
-
-// console.log(importWordsFromGameJS);
+// console.log(importWordsFromGameJS.game.list);
+// console.log(importWordsFromGameJS.game.list.length);
 
 // for (var i=1; i<20; i++) {
 // console.log(importWordsFromGameJS.game.list[i]);
@@ -16,7 +15,23 @@ var importWordsFromGameJS = require('./game.js');
 
 
 
-// prompt.start();
+prompt.start();
+
+game = {
+	wordArray: [],
+	wordUArray: [],
+	lives: 8,
+	wordBankLength: importWordsFromGameJS.game.list.length,
+	word: "test",
+	wordU: " ",
+	pullWord: function() {
+		word = importWordsFromGameJS.game.list[(Math.floor(Math.random()*this.wordBankLength))]
+		console.log(word);
+		}
+	setUnderline: 
+}
+// pulls a random word from the word bank
+game.pullWord();
 
 // game = {
 //     wordBank: // create or import a list of words
