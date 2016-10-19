@@ -1,17 +1,18 @@
 
 // require prompt to use to make the game 
 var inquirer = require('inquirer');
+
+var prompt = require('prompt');
 //require the objects/exports you will use
 var importWordsFromGameJS = require('./game.js');
 
-var ui = new inquirer.ui.BottomBar();
-outputStream.pipe(ui.log);
 
-console.log(importWordsFromGameJS);
 
-for (var i=1; i<20; i++) {
-console.log(importWordsFromGameJS.game.list[i]);
-}
+// console.log(importWordsFromGameJS);
+
+// for (var i=1; i<20; i++) {
+// console.log(importWordsFromGameJS.game.list[i]);
+// }
 
 
 
