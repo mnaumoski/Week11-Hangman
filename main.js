@@ -1,4 +1,3 @@
-
 // require prompt to use to make the game 
 var inquirer = require('inquirer');
 
@@ -9,29 +8,30 @@ var importWordsFromGameJS = require('./game.js');
 // console.log(importWordsFromGameJS.game.list);
 // console.log(importWordsFromGameJS.game.list.length);
 
-// for (var i=1; i<20; i++) {
-// console.log(importWordsFromGameJS.game.list[i]);
-// }
-
-
-
 prompt.start();
 
 game = {
-	wordArray: [],
-	wordUArray: [],
-	lives: 8,
-	wordBankLength: importWordsFromGameJS.game.list.length,
-	word: "test",
-	wordU: " ",
-	pullWord: function() {
-		word = importWordsFromGameJS.game.list[(Math.floor(Math.random()*this.wordBankLength))]
-		console.log(word);
-		}
-	setUnderline: 
-}
-// pulls a random word from the word bank
+        wordArray: [],
+        wordUArray: [],
+        lives: 8,
+        wordBankLength: importWordsFromGameJS.game.list.length,
+        word: "test",
+        wordU: " ",
+        pullWord: function() {
+            word = importWordsFromGameJS.game.list[(Math.floor(Math.random() * this.wordBankLength))]
+            console.log(word);
+            console.log(word.length);
+        },
+        setUnderline: function() {
+            this.pullWord();
+            for (var i = 0; i < this.word.length; i++) {
+                console.log(importWordsFromGameJS.game.list[i]);
+            }
+        },
+    }
+    // pulls a random word from the word bank
 game.pullWord();
+game.setUnderline();
 
 // game = {
 //     wordBank: // create or import a list of words
